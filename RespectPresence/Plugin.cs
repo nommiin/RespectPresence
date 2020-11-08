@@ -43,16 +43,16 @@ namespace RespectPresence {
             // Hook Events
             try {
                 // Ingame
-                Hook(AccessTools.Method(typeof(SteamMainGameSceneBase), "Start"), AccessTools.Method(typeof(CoreCompontent), "IngameStart"));
-                Hook(AccessTools.Method(typeof(SteamMainGameSceneBase), "Update"), AccessTools.Method(typeof(CoreCompontent), "IngameUpdate"));
+                Hook(typeof(SteamMainGameSceneBase).GetMethod("Start"), typeof(CoreCompontent).GetMethod("IngameStart"));
+                Hook(typeof(SteamMainGameSceneBase).GetMethod("Update"), typeof(CoreCompontent).GetMethod("IngameUpdate"));
 
                 // SongInfoDetailView
-                Hook(AccessTools.Method(typeof(SongInfoDetailView), "Awake"), AccessTools.Method(typeof(CoreCompontent), "GetSongInfo"));
+                Hook(typeof(SongInfoDetailView).GetMethod("Awake"), typeof(CoreCompontent).GetMethod("GetSongInfo"));
                 // DifficultChangeController
-                Hook(AccessTools.Method(typeof(DifficultChangeController), "Awake"), AccessTools.Method(typeof(CoreCompontent), "GetDifficultySwitcher"));
+                Hook(typeof(DifficultChangeController).GetMethod("Awake"), typeof(CoreCompontent).GetMethod("GetDifficultySwitcher"));
 
                 // Update & Destroy
-                Hook(AccessTools.Method(typeof(SongSelectCoverRotator), "Update"), AccessTools.Method(typeof(CoreCompontent), "SongSelectUpdate"));
+                Hook(typeof(SongSelectCoverRotator).GetMethod("Update"), typeof(CoreCompontent).GetMethod("SongSelectUpdate"));
                 Hook(typeof(SongSelectCoverRotator).GetMethod("OnDestroy"), typeof(CoreCompontent).GetMethod("RemoveReferences"));
 
                 // Difficulty Method
