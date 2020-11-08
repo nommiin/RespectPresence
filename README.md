@@ -18,6 +18,9 @@ RespectPresence has been tested for DJMAX RESPECT V v647. Future versions are li
 5. Compile the library for x64
 6. Copy `RespectPresence.dll` and `discord_game_sdk.dll` from bin folder into `BepInEx\plugins\`
 
+# Risks
+Given that DJMAX RESPECT V has implemented XIGNCODE3 for it's DRM, there is a chance that there might also be some sort of anti-cheat. Using this plugin, I haven't ran into issues regarding an anticheat, but please understand that you could potentially be banned when using this plugin.
+
 # Thanks
 - The BepInEx Discord server for answering my numerous questions
 - Thanks to [\u\wh0am15533](https://github.com/wh0am15533) for creating [Il2CPPCSharp-Trainer](https://github.com/wh0am15533/Il2CppCSharp-Trainer) which served as reference when creating IL2CPP plugins
