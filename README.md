@@ -1,5 +1,5 @@
 # RespectPresence
-A BepInEx plugin for DJMAX RESPECT V that displays player information in Discord
+A BepInEx plugin for DJMAX RESPECT V that displays gameplay information in Discord
 
 # Screenshot~~s~~
 ![Screenshot](https://i.imgur.com/7jmab9h.png)
