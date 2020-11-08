@@ -11,7 +11,7 @@ At the moment, RespectPresence can detect the song name, composer, and selected 
 RespectPresence has been tested for DJMAX RESPECT V v647. Future versions are likely to fail, as the game employs heavy obfuscation on many classes and their respective members. Ideally, reliance on obfuscated method names will be removed entirely; but for the time being, this is as good as it'll get. This plugin is being developed in my free-time, so it isn't exactly a high priorty for me. I'll be looking into ways to improve this plugin, such as adding in support for all modes, menus, proper RPC display (playmode display, proper mode name display)
 
 # Compiling
-1. Install the IL2CPP branch of [BepInEx](https://github.com/BepInEx/BepInEx) for DJMAX RESPECT V
+1. Install the IL2CPP branch of [BepInEx](https://github.com/BepInEx/BepInEx) for DJMAX RESPECT V ([for further help, see the BepInEx documentation on how to install](https://bepinex.github.io/bepinex_docs/master/articles/user_guide/installation/index.html?tabs=tabid-win))
 2. Run the game once to generate unhollowed assemblies
 3. Add required BepInEx/HarmonyX/IL2CPP assemblies as references from `BepInEx\core\`
 4. Add unhollowed game assemblies from as references from `BepInEx\unhollowed\`
