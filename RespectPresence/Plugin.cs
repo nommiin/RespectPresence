@@ -22,8 +22,8 @@ namespace RespectPresence {
             Plugin.Logging = this.Log;
         }
 
-        public static void Hook(MethodBase _target, MethodInfo _hook) {
-            Plugin.HarmonyInstance.Patch(_target, postfix: new HarmonyMethod(_hook));
+        public static void Hook(MethodBase _target, string _hook) {
+            Plugin.HarmonyInstance.Patch(_target, postfix: new HarmonyMethod(typeof(CoreCompontent).GetMethod(_hook)));
         }
 
         public static void SetActivity(Discord.Activity _activity) {
@@ -43,17 +43,23 @@ namespace RespectPresence {
             // Hook Events
             try {
                 // Ingame
-                Hook(typeof(SteamMainGameSceneBase).GetMethod("Start"), typeof(CoreCompontent).GetMethod("IngameStart"));
-                Hook(typeof(SteamMainGameSceneBase).GetMethod("Update"), typeof(CoreCompontent).GetMethod("IngameUpdate"));
+                Hook(typeof(SteamMainGameSceneBase).GetMethod("Awake"), "IngameStart");
+                Hook(typeof(SteamMainGameSceneBase).GetMethod("Update"), "RunCallbacks");
 
-                // SongInfoDetailView
-                Hook(typeof(SongInfoDetailView).GetMethod("Awake"), typeof(CoreCompontent).GetMethod("GetSongInfo"));
-                // DifficultChangeController
-                Hook(typeof(DifficultChangeController).GetMethod("Awake"), typeof(CoreCompontent).GetMethod("GetDifficultySwitcher"));
+                // Grab
+                Hook(typeof(SongInfoDetailView).GetMethod("Awake"), "GetSongInfo");
+                Hook(typeof(DifficultChangeController).GetMethod("Awake"), "GetDifficultySwitcher");
+                Hook(typeof(BaseKeymodeChangeController).GetMethod("Awake"), "GetKeymodeSwitcher");
 
                 // Update & Destroy
-                Hook(typeof(SongSelectCoverRotator).GetMethod("Update"), typeof(CoreCompontent).GetMethod("SongSelectUpdate"));
-                Hook(typeof(SongSelectCoverRotator).GetMethod("OnDestroy"), typeof(CoreCompontent).GetMethod("RemoveReferences"));
+                Hook(typeof(SongSelectCoverRotator).GetMethod("Update"), "SongSelectUpdate");
+                Hook(typeof(SongSelectCoverRotator).GetMethod("OnDestroy"), "RemoveReferences");
+
+                // Mode Catches
+                Hook(typeof(AirModeNextTuneView).GetMethod("Update"), "AirCatch");
+                Hook(typeof(FreestylePanelController).GetMethod("Awake"), "FreestyleCatch");
+                Hook(typeof(MissionDetailRotator).GetMethod("Awake"), "MissionCatch");
+                Hook(typeof(MaingameResultView).GetMethod("Awake"), "ResultCatch");
 
                 // Difficulty Method
                 /*
@@ -64,7 +70,7 @@ namespace RespectPresence {
 
                 Could be worth checking other classes to see if the difficulty is stored elsewhere, as of v647 the difficulty enum is named EJLGBABDMIP.NACOBCHIEAO
                 */
-                
+
                 /*
                 MethodInfo[] _difficultyMethods = typeof(DifficultChangeController).GetMethods();
                 for(int i = 0; i < _difficultyMethods.Length; i++) {
